@@ -1,0 +1,46 @@
+{
+  "name": "stash",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Organize your beats, samples and kits on your computer.",
+  "author": "talk2me",
+  "license": "MIT",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "app": "npm run build && electron .",
+    "installer": "npm run build && electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "app.stash.desktop",
+    "productName": "stash",
+    "executableName": "stash-app",
+    "copyright": "Copyright © 2026 loud4u",
+    "files": ["dist/**", "electron/**"],
+    "electronLanguages": ["en-US"],
+    "directories": { "output": "release" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "artifactName": "stash-setup.${ext}" }
+  },
+  "devDependencies": {
+    "@animate-ui/react": "^2.0.0",
+    "@base-ui/react": "^1.9.0",
+    "@fontsource-variable/geist": "^5.3.0",
+    "@solar-icons/react": "^2.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "border-beam": "^1.4.1",
+    "electron": "44.7.2",
+    "electron-builder": "26.17.0",
+    "motion": "^14.6.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}

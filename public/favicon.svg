@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-512 -512 1024 1024">
+  <circle r="512" fill="#090909" />
+  <g fill="#fafafa" transform="scale(0.8)">
+    <ellipse cy="-300" rx="257.5" ry="105.5" />
+    <ellipse cy="300" rx="257.5" ry="105.5" />
+    <ellipse cx="-297" rx="111" ry="234.5" />
+    <ellipse cx="297" rx="111" ry="234.5" />
+    <circle r="143" />
+  </g>
+</svg>
