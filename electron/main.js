@@ -1,6 +1,6 @@
 // Desktop shell: a window around the built web app (dist/), with no server.
 // Pages are served from app://stash so IndexedDB, localStorage and the folder picker get a stable, secure origin.
-import { app, BrowserWindow, dialog, ipcMain, Menu, net, protocol, session, shell } from "electron";
+import { app, BrowserWindow, dialog, ipcMain, Menu, net, protocol, screen, session, shell } from "electron";
 import { execFile } from "node:child_process";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
@@ -35,11 +35,13 @@ app.whenReady().then(() => {
 
   // no Windows title bar: the app header is the drag area and has its own window buttons (src/app/WindowControls.tsx)
   Menu.setApplicationMenu(null);
+  // small or scaled screens (1366×768 at 125%…): never bigger than the free area, or the bottom buttons end up under the taskbar
+  const fit = screen.getPrimaryDisplay().workAreaSize;
   const win = new BrowserWindow({
-    width: 1440,
-    height: 900,
-    minWidth: 1024,
-    minHeight: 640,
+    width: Math.min(1440, fit.width),
+    height: Math.min(900, fit.height),
+    minWidth: Math.min(1024, fit.width),
+    minHeight: Math.min(640, fit.height),
     title: "stash",
     backgroundColor: "#090909",
     titleBarStyle: "hidden",

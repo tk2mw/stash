@@ -91,11 +91,18 @@
 }
 
 /* Desktop app: these areas stand in for Windows' title bar (drag to move, double-click to maximize).
-   Anything you can click inside them stays clickable. */
+   Anything you can click inside them stays clickable. Chromium hands the drag down to every child and ignores
+   overflow: hidden, so a child that sticks out (the 300vmax lines on the intro) made the whole window a title bar
+   and ate every click: only the area's own box drags. `initial`, not `none`: Chromium reads `none` as no-drag. */
+.drag-window * {
+  -webkit-app-region: initial;
+}
 .drag-window {
   -webkit-app-region: drag;
 }
-.drag-window :is(a, button, input, select, textarea, label, [role="button"], [role="slider"], [role="combobox"]) {
+.drag-window :is(a, button, input, select, textarea, label, [role="button"], [role="slider"], [role="combobox"]),
+/* menus and dialogs open on top of these areas (from the page's end): they stay clickable there too */
+:is([role="menu"], [role="dialog"], [role="alertdialog"]) {
   -webkit-app-region: no-drag;
 }
 
